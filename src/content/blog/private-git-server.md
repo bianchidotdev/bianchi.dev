@@ -6,11 +6,9 @@ updatedDate: '2024-04-12'
 heroImage: /images/soft-serve.png
 ---
 
-# Private Git Server
-
 ![soft-serve my private git repo](/images/private-git-example.png)
 
-## Intro
+### Intro
 
 I use [Logseq](https://logseq.com/) as an open-source notes app across all my devices.
 Historically, I haven't worried about syncing data between the devices. 
@@ -24,7 +22,7 @@ This guide follows the path I took trying to ensure my notes were automatically 
 
 This repo uses [soft-serve](https://github.com/charmbracelet/soft-serve) as a primarily ssh-driven self-hostable git server.
 
-## Getting Started
+### Getting Started
 
 The following steps walk through configuring the git server through environment variables, authenticating to fly.io and deploying the git server using the official, public Docker image.
 

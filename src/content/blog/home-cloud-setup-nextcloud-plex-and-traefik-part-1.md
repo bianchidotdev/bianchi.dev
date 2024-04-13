@@ -5,7 +5,7 @@ pubDate: "2023-03-27"
 heroImage: /images/home-cloud-setup.png
 ---
 
-## What this is
+### What this is
 
 A simple, repeatable setup for a private cloud anyone can set up and start down their journey toward [privacy](https://www.reddit.com/r/privacy/wiki/index).
 
@@ -16,11 +16,11 @@ This setup goes through the installation of the following:
 - Auto HTTPS via [Traefik](https://traefik.io/)
 - Simple Networking
 
-## Source Code
+### Source Code
 
 All code is hosted on [GitHub](https://github.com/michaeldbianchi/privatecloud)
 
-## Why do this
+### Why do this
 
 In the last few years, I've become more aware and upset at the amount of data I've published to the public internet and to companies that should not be trusted to store our data securely.
 
@@ -30,7 +30,7 @@ For this to be more commonly adopted, the barrier of entry needs to decrease suc
 
 I am writing this guide so that others starting to see the value of a self-hosted cloud can easily stand up their own.
 
-## Prereqs
+### Prereqs
 
 Hardware:
 
@@ -50,7 +50,7 @@ Domain Registration
 
 - One domain that you can control DNS with (I use Cloudflare)
 
-### Vagrant Instructions
+**Vagrant Instructions**
 
 If you just want to test this out in an ephemeral environment, I included a `Vagrantfile` in the source code repo.
 
@@ -62,14 +62,14 @@ vagrant ssh
 cd privatecloud
 ```
 
-### Mac Install Instructions
+**Mac Install Instructions**
 
 ```bash
 brew install --formula docker  # docker cli
 brew install --cask docker  # docker desktop
 ```
 
-### Linux Install Instructions (Debian Based)
+**Linux Install Instructions (Debian Based)**
 
 ```bash
 sudo apt-get install docker
@@ -79,11 +79,11 @@ sudo apt-get install docker-compose
 
 ## Quick Start
 
-## Source Code
+### Source Code
 
 Clone the repo at the [michaeldbianchi/privatecloud](https://github.com/michaeldbianchi/privatecloud)
 
-## Setup
+### Setup
 
 Run the setup script, which will create `.env` files, userfiles, and any required docker resources (networks)
 
@@ -108,11 +108,11 @@ POSTGRES_DB=nextcloud
 POSTGRES_USER=nextcloud
 ```
 
-## Networking
+### Networking
 
 You have 2 options here, either do the full setup (described later in the Appendix) which involves setting up DNS with your actual domain and port forwarding, or set up a local override, described below.
 
-### Local DNS Override
+**Local DNS Override**
 
 Set up DNS overrides using `/etc/hosts` (Linux or Mac)
 
@@ -124,7 +124,7 @@ This script is also included as an executable in the source code under `./bin/se
 
 NOTE: If you are setting this up on a remote host, feel free to change `127.0.0.1` with the IP address of the server.
 
-## Run the app
+### Run the app
 
 ```sh
 docker-compose up -d    # run app in background
@@ -149,9 +149,9 @@ After bypassing the invalid certificate errors in your browser, you should be ab
   - URL: localhost:32400/web
   - Note: The Plex Media Server does not have it's own dashboard and will just redirect you to it's own application where you can proceed to configure the server
 
-# Appendix
+## Appendix
 
-## Networking
+### Networking
 
 If you want to just set up this project locally, follow the process in the Quick Start.
 
@@ -160,7 +160,7 @@ This will walk through the following steps:
 1. DNS Setup
 2. Port-forwarding
 
-### DNS Setup
+**DNS Setup**
 
 Set up DNS to point to your server/computer.
 
@@ -181,7 +181,7 @@ Create a(n) A record(s):
 - `A` [`cloud.example.com`](http://cloud.example.com) `<public ip address>`
 - `A` [`traefik.example.com`](http://traefik.example.com) `<public ip address>`
 
-### Dynamic DNS
+**Dynamic DNS**
 
 Unless you are getting a static IP from your ISP or cloud provider, your public IP address will likely change on every reboot of your router.
 
@@ -191,7 +191,7 @@ A common solution is to use a DynamicDNS service or tool to automatically config
 - Namecheap - [docs](https://www.namecheap.com/support/knowledgebase/article.aspx/43/11/how-do-i-set-up-a-host-for-dynamic-dns/)
 - Any provider - [ddns-updater](https://github.com/qdm12/ddns-updater)
 
-### Port Forwarding
+**Port Forwarding**
 
 Now that we have DNS set up, a network request to your domain should arrive at your network router. However, your router will likely just block that request unless explicitly told to route it to some backend server.
 
@@ -206,7 +206,7 @@ In order for this project to work, you'll need to route ports 80 and 443 to the 
 
 Depending on your setup, it may also be necessary to set a static IP for your machines. This should also be available in your router config.
 
-### Validation
+**Validation**
 
 Verify the DNS by making sure your public IP and DNS IP match:
 
