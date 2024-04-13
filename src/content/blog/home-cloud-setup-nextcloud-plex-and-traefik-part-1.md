@@ -1,13 +1,8 @@
 ---
 title: 'Home Cloud Setup (NextCloud, Plex, and Traefik) Part 1'
 description: A simple, repeatable setup for a private cloud anyone can set up and start down their journey toward privacy
-pubDate: '2023-03-27'
-slug: home-cloud-setup-nextcloud-plex-and-traefik-part-1
-coverImage: /images/home-cloud-setup.png
-coverWidth: 16
-coverHeight: 9
-categories:
-  - homelab
+pubDate: "2023-03-27"
+heroImage: /images/home-cloud-setup.png
 ---
 
 ## What this is

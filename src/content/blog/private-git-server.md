@@ -2,13 +2,8 @@
 title: 'Deploying a Private Git Server with Soft-Serve'
 description: A simple and private git server running Charm's soft-serve on fly.io
 pubDate: '2024-03-29'
-updated: '2024-04-12'
-slug: soft-serve-git-server
-coverImage: /images/soft-serve.png
-coverWidth: 16
-coverHeight: 9
-categories:
-  - homelab
+updatedDate: '2024-04-12'
+heroImage: /images/soft-serve.png
 ---
 
 # Private Git Server
