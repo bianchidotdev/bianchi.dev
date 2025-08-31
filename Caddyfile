@@ -17,12 +17,17 @@
 # 	}
 # }
 {
-  auto_https off
+	auto_https off
+	# servers {
+	# 	listen_protocols h1 h2c
+	# }
 }
 
 :8080 {
 	# Enable Anubis anti-AI/scraper protection
 	# anubis
+	#
+	bind 0.0.0.0
 
 	handle /health {
 		respond "OK" 200

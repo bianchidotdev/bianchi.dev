@@ -30,3 +30,4 @@ COPY --from=astro-builder /app/dist /usr/share/caddy
 COPY ./Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 8080
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
