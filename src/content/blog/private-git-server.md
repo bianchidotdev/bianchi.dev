@@ -35,7 +35,7 @@ The following steps walk through configuring the git server through environment 
 
 **Steps:**
 
-* Clone or fork the repo [bianchidotdev/git](https://github.com/bianchidotdev/git)
+* Clone or fork the repo [bianchidotdev/git](https://codeberg.org/bianchidotdev/git)
 * Update the following in `fly.toml`
   * app name - whatever you want your app to be called in Fly
   * [primary_region](https://fly.io/docs/reference/regions/) - wherever is closest to where you'll be using it (or keep it as `ord`)
@@ -67,7 +67,7 @@ What that all did was deploy the soft-serve git server's Docker image to a VM ru
 
 Test it out by creating importing a public repo:
 ```sh
-ssh <fly-app-name>.fly.dev repo import git https://github.com/bianchidotdev/git.git
+ssh <fly-app-name>.fly.dev repo import git https://codeberg.org/bianchidotdev/git.git
 
 # or the soft-serve repo
 ssh <fly-app-name>.fly.dev repo import git https://github.com/charmbracelet/soft-serve

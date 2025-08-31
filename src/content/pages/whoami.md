@@ -10,7 +10,7 @@ pubDate: "2024-01-01"
 
 Pronouns: they/them
 
-* [GitHub](https://github.com/bianchidotdev)
+* [Codeberg](https://codeberg.org/bianchidotdev)
 * <a href="https://hachyderm.io/@bonkybot" rel="me">Mastodon</a>
 
 I'm  a software engineer who builds mostly in Elixir, Ruby, and Go. Professionally, I focus largely on backend software, developer tooling, and declarative infrastructure.
@@ -24,4 +24,4 @@ My goal is typically to make applications robust and observable so when I inevit
 * Modular Origami
 * Rock Climbing
 
-You can find the source code for this blog on [GitHub](https://github.com/bianchidotdev/bianchi.dev).
+You can find the source code for this blog on [Codeberg](https://codeberg.org/bianchidotdev/bianchi.dev).

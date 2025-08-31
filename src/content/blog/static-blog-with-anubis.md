@@ -126,5 +126,4 @@ I set up my custom domain for the site, and all was good again 🤷. I did see a
 
 Anyhow, at the end of the day, we have a blog site deployed to Fly.io with Anubis providing a Proof-of-work challenge for all visitors 🎉!
 
-Feel free to copy the setup, all documented in this repo here:
-https://codeberg.org/bianchidotdev/bianchi.dev
+Feel free to copy the setup, all documented in [this repo](https://codeberg.org/bianchidotdev/bianchi.dev).
