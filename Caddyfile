@@ -1,0 +1,31 @@
+{
+	# disable HTTPS because it's going to be handled by fly.io
+	auto_https off
+	servers {
+		# sets fly proxy as trusted proxy
+		trusted_proxies static 172.16.0.0/16
+		client_ip_headers X-Forwarded-For Fly-Client-IP
+	}
+	log {
+		level INFO
+		exclude http.handlers.anubis.anubis
+	}
+}
+
+:8080 {
+	# required for anubis to work
+	request_header +X-Real-IP {client_ip}
+
+	handle /health {
+		respond "OK" 200
+	}
+
+	handle {
+		# Enable Anubis anti-AI/scraper protection
+		anubis
+
+		# static file server
+		root * /usr/share/caddy
+		file_server
+	}
+}

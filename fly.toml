@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for bianchi-dev on 2025-08-30T19:37:03-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bianchi-dev'
+primary_region = 'lax'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[http_service]
+  internal_port = 8080
+  force_https = false
+  # let's just always run a tiny machine for now
+  # auto_stop_machines = 'stop'
+  # auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "10s"
+    grace_period = "15s"
+    method = "GET"
+    path = "/health"
+    protocol = "http"
+
+[[vm]]
+  size = 'shared-cpu-1x'
