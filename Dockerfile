@@ -1,10 +1,10 @@
 # Multi-stage build for Astro + Custom Caddy with Anubis
 
 # Build custom Caddy with Anubis plugin
-# FROM caddy:2-builder AS caddy-builder
+FROM caddy:2-builder AS caddy-builder
 
-# RUN xcaddy build \
-#     --with github.com/daegalus/caddy-anubis
+RUN xcaddy build \
+    --with github.com/daegalus/caddy-anubis
 
 
 # Build the Astro site
@@ -23,7 +23,7 @@ RUN npm run build
 FROM caddy:2-alpine
 
 # Copy the caddy modules
-# COPY --from=caddy-builder /usr/bin/caddy /usr/bin/caddy
+COPY --from=caddy-builder /usr/bin/caddy /usr/bin/caddy
 
 # Copy the built site
 COPY --from=astro-builder /app/dist /usr/share/caddy

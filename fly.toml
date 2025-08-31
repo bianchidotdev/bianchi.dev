@@ -12,6 +12,7 @@ primary_region = 'lax'
 [http_service]
   internal_port = 8080
   force_https = false
+  # let's just always run a tiny machine for now
   # auto_stop_machines = 'stop'
   # auto_start_machines = true
   min_machines_running = 1
@@ -24,18 +25,6 @@ primary_region = 'lax'
     method = "GET"
     path = "/health"
     protocol = "http"
-
-# [[services]]
-#   protocol = "tcp"
-#   internal_port = 8080
-
-#   [[services.ports]]
-#     port = 80
-#     handlers = ["http"]
-
-#   [[services.ports]]
-#     port = 443
-#     handlers = ["http", "tls"]
 
 [[vm]]
   size = 'shared-cpu-1x'
