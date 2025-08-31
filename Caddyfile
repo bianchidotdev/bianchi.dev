@@ -20,6 +20,11 @@
 		respond "OK" 200
 	}
 
+	handle /robots.txt {
+		root * /usr/share/caddy
+		file_server
+	}
+
 	handle {
 		# Enable Anubis anti-AI/scraper protection
 		anubis
