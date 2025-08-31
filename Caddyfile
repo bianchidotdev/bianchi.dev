@@ -1,0 +1,36 @@
+# {
+# 	debug
+# 	# auto_https off
+# 	log {
+# 		output stdout
+# 		format console
+# 		level DEBUG
+# 	}
+
+# 	servers {
+# 		# 	listener_wrappers {
+# 		# 		proxy_protocol
+# 		# 		tls
+# 		# 	}
+# 		trusted_proxies static 172.16.0.0/16
+# 		client_ip_headers X-Forwarded-For Fly-Client-IP
+# 	}
+# }
+{
+  auto_https off
+}
+
+:8080 {
+	# Enable Anubis anti-AI/scraper protection
+	# anubis
+
+	handle /health {
+		respond "OK" 200
+	}
+
+	handle {
+		# static file server
+		root * /usr/share/caddy
+		file_server
+	}
+}
