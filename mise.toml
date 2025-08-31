@@ -3,6 +3,7 @@
 [tools]
 flyctl = "latest"
 node = "24"
+vale = "latest"
 
 # astro
 [tasks.build]

@@ -11,7 +11,7 @@ primary_region = 'lax'
 
 [http_service]
   internal_port = 8080
-  force_https = false
+  force_https = true
   # let's just always run a tiny machine for now
   # auto_stop_machines = 'stop'
   # auto_start_machines = true
