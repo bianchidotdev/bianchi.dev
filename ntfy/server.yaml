@@ -1,0 +1,12 @@
+# ntfy server configuration
+# Documentation: https://docs.ntfy.sh/config/
+
+# Base URL for your ntfy server
+base-url: "https://ntfy.bianchi.dev"
+
+# Listen on all interfaces, port 8080 (non-privileged)
+listen-http: ":8080"
+behind-proxy: true
+
+# Upstream
+upstream-base-url: "https://ntfy.sh"

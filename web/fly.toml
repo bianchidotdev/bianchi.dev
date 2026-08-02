@@ -7,7 +7,7 @@ app = 'bianchi-dev'
 primary_region = 'ord'
 
 [build]
-  dockerfile = 'Dockerfile'
+  dockerfile = 'Containerfile'
 
 [http_service]
   internal_port = 8080

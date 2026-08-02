@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for ntfy-bianchidotdev on 2026-08-01T18:10:41-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'ntfy-bianchidotdev'
+primary_region = 'ord'
+
+[build]
+  dockerfile = 'Containerfile'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256

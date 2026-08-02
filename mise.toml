@@ -2,44 +2,20 @@
 
 [tools]
 flyctl = "latest"
-node = "24"
-vale = "latest"
 
-# astro
-[tasks.build]
-run = "npm run build"
-
-[tasks.dev]
-run = "npm run dev"
-
-# caddy
-[tasks."caddy:build"]
-run = "docker build --target=caddy-builder -t caddy-builder ."
-[tasks."caddy:fmt"]
-depends = ["caddy:build"]
-run = [
-  "docker run -it --rm -v ./Caddyfile:/tmp/Caddyfile caddy-builder caddy fmt --overwrite --config /tmp/Caddyfile",
-]
-[tasks."caddy:lint"]
-depends = ["caddy:build"]
-run = [
-  "docker build --target=caddy-builder -t caddy-builder .",
-  "docker run -it --rm -v ./Caddyfile:/tmp/Caddyfile caddy-builder caddy validate --config /tmp/Caddyfile",
-]
-
-# docker
-[tasks."docker:build"]
-run = "docker build -t bonkydev ."
-
-[tasks."docker:dev"]
-run = [
-  "docker build -t bonkydev .",
-  "docker run -it --rm -p 8080:8080 bonkydev",
-]
-
-# working with fly
-[tasks.deploy]
+# web deploy
+[tasks."web:deploy"]
+dir = "web"
 run = "fly deploy"
 
-[tasks.logs]
+[tasks."web:logs"]
+dir = "web"
+run = "fly logs"
+
+[tasks."ntfy:deploy"]
+dir = "ntfy"
+run = "fly deploy"
+
+[tasks."ntfy:logs"]
+dir = "ntfy"
 run = "fly logs"

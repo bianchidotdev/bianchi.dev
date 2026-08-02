@@ -1,0 +1,39 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[tools]
+bun = "latest"
+vale = "latest"
+
+# dev
+[tasks."docker:build"]
+run = "docker build -f Containerfile -t bonkydev ."
+
+[tasks."docker:dev"]
+run = [
+  "docker build -f Containerfile -t bonkydev .",
+  "docker run -it --rm -p 8080:8080 bonkydev",
+]
+
+# astro
+[tasks.build]
+run = "bun run build"
+
+[tasks.dev]
+run = "bun run dev"
+
+[tasks.install]
+run = "bun install"
+
+# caddy
+[tasks."caddy:build"]
+run = "docker build -f Containerfile --target=caddy-builder -t caddy-builder ."
+[tasks."caddy:fmt"]
+depends = ["caddy:build"]
+run = [
+  "docker run -it --rm -v ./Caddyfile:/tmp/Caddyfile caddy-builder caddy fmt --overwrite --config /tmp/Caddyfile",
+]
+[tasks."caddy:lint"]
+depends = ["caddy:build"]
+run = [
+  "docker run -it --rm -v ./Caddyfile:/tmp/Caddyfile caddy-builder caddy validate --config /tmp/Caddyfile",
+]
