@@ -1,0 +1,59 @@
+# fly.toml app configuration file generated for bianchidotdev-pocket-id on 2026-08-15T13:57:53-05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'bianchidotdev-pocket-id'
+primary_region = 'ord'
+
+[build]
+  dockerfile = 'Containerfile'
+
+[env]
+  APP_URL = 'https://id.bianchi.dev'
+  AWS_REQUEST_CHECKSUM_CALCULATION = 'WHEN_REQUIRED'
+  AWS_RESPONSE_CHECKSUM_VALIDATION = 'WHEN_REQUIRED'
+  DB_CONNECTION_STRING = '/usr/local/var/data/pocket-id.db'
+  FILE_BACKEND = 'database'
+  OTEL_EXPORTER_OTLP_COMPRESSION = 'gzip'
+  S3_FORCE_PATH_STYLE = 'true'
+  TRUST_PROXY = 'true'
+  # we'll let this go through for now. they say they don't store ip addr or any user info
+  # https://pocket-id.org/docs/configuration/analytics
+  # ANALYTICS_DISABLED = true
+  # for later
+  # TRACING_ENABLED = true
+  # METRICS_ENABLED = true
+  # OTEL_EXPORTER_OTLP_METRICS_ENDPOINT = https://s1754970.eu-fsn-3.betterstackdata.com/v1/metrics
+  # OTEL_EXPORTER_OTLP_TRACES_ENDPOINT = https://s1754970.eu-fsn-3.betterstackdata.com/v1/traces
+  # OTEL_EXPORTER_OTLP_LOGS_ENDPOINT = https://s1754970.eu-fsn-3.betterstackdata.com/v1/logs
+
+
+[[mounts]]
+  source = 'data'
+  destination = '/usr/local/var/data'
+
+[http_service]
+  internal_port = 1411
+  force_https = true
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ['app']
+
+  [[http_service.checks]]
+    interval = '5s'
+    timeout = '2s'
+    grace_period = '10s'
+    method = 'GET'
+    path = '/healthz'
+
+[[vm]]
+  memory = '256mb'
+  cpus = 1
+  memory_mb = 256
+
+[[metrics]]
+  port = 9090
+  path = '/metrics'
+  processes = ['app']

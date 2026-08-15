@@ -1,0 +1,17 @@
+# Subcommand to execute
+exec: "/usr/local/bin/pocket-id"
+
+dbs:
+  - path: ${DB_CONNECTION_STRING}
+    replica:
+      type: s3
+      bucket: ${BUCKET_NAME}
+      path: litestream${DB_CONNECTION_STRING}
+      endpoint: ${AWS_ENDPOINT_URL_S3}
+      region: ${AWS_REGION}
+      access-key-id: ${AWS_ACCESS_KEY_ID}
+      secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+      force-path-style: true
+      skip-verify: true
+
+addr: ":9090"

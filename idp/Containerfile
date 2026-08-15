@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1
+
+ARG APP_UID=1000 \
+    APP_GID=1000
+
+FROM litestream/litestream:0.5 AS litestream
+FROM ghcr.io/pocket-id/pocket-id:v2-distroless AS pocket-id
+
+
+FROM gcr.io/distroless/static-debian13:nonroot
+
+ARG APP_IMAGE \
+    APP_NAME \
+    APP_VERSION \
+    APP_ROOT=/usr/local \
+    APP_UID \
+    APP_GID
+
+ENV APP_IMAGE=${APP_IMAGE} \
+    APP_NAME=${APP_NAME} \
+    APP_VERSION=${APP_VERSION} \
+    APP_ROOT=${APP_ROOT}
+
+ENV APP_ENV=production \
+    ANALYTICS_DISABLED=true \
+    UPLOAD_PATH=${APP_ROOT}/var/uploads \
+    KEYS_PATH=${APP_ROOT}/var/keys \
+    GEOLITE_DB_PATH=${APP_ROOT}/var/geolite;
+
+COPY --chown=${APP_UID}:${APP_GID} --from=pocket-id /app/pocket-id /usr/local/bin/pocket-id
+COPY --chown=${APP_UID}:${APP_GID} --from=litestream /usr/local/bin/litestream /usr/local/bin/litestream
+COPY --chown=${APP_UID}:${APP_GID} etc/litestream.yml /etc/litestream.yml
+
+USER ${APP_UID}:${APP_GID}
+WORKDIR ${APP_ROOT}/var/data
+WORKDIR ${APP_ROOT}/var/uploads
+WORKDIR ${APP_ROOT}/var/keys
+WORKDIR ${APP_ROOT}/var/geolite
+WORKDIR /
+
+VOLUME ["${APP_ROOT}/var"]
+
+EXPOSE 1411
+
+# health
+HEALTHCHECK --interval=5s --timeout=2s --start-interval=5s CMD ["/usr/local/bin/pocket-id", "healthcheck"]
+
+ENTRYPOINT ["/usr/local/bin/litestream"]
+CMD ["replicate"]
