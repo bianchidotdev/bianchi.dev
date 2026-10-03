@@ -1,5 +1,6 @@
 # Subcommand to execute
 exec: "/usr/local/bin/pocket-id"
+sync-interval: 10m
 
 dbs:
   - path: ${DB_CONNECTION_STRING}
