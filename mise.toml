@@ -19,3 +19,11 @@ run = "fly deploy"
 [tasks."ntfy:logs"]
 dir = "ntfy"
 run = "fly logs"
+
+[tasks."idp:deploy"]
+dir = "idp"
+run = "fly deploy"
+
+[tasks."idp:logs"]
+dir = "idp"
+run = "fly logs"
